@@ -15,7 +15,18 @@ class NpmService extends Service {
 				dataType: 'json'
 			})
 		}
-		return result
+		const { data, status } = result
+		if (status === 200) {
+			if (data.version) {
+				// 单个版本
+				return data.version
+			} else {
+				// 多个版本
+				return Object.keys(data.versions)
+			}
+		} else {
+			return false
+		}
 	}
 }
 
