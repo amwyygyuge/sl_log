@@ -10,4 +10,5 @@ module.exports = app => {
 	logRouter.post('/create', controller.log.create)
 	router.get('/package/:name/:version', controller.npm.index)
 	router.get('/package/:name', controller.npm.index)
+	router.get('/test/error_test', controller.test.errorTest)
 }
