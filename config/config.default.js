@@ -13,6 +13,9 @@ module.exports = appInfo => {
 		origin: '*',
 		maxAge: 3600 * 1000
 	}
+	config.static = {
+		gzip: true
+	}
 
 	// add your config here
 	return config

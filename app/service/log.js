@@ -12,9 +12,19 @@ class LogService extends Service {
 		return false
 	}
 
-	async query() {
-		const logs = await this.ctx.model.Log.find()
+	async query(args) {
+		const { endTime = null, startTime = null } = args
+		delete args.endTime
+		delete args.startTime
+		const logs = await this.ctx.model.Log.findByTimeRange(args, [ startTime, endTime ], 'date')
 		return logs
+	}
+
+	async remove({ ids }) {
+		const res = await this.ctx.model.Log.deleteMany({ _id: { $in: ids } })
+		if (res) {
+			return true
+		}
 	}
 }
 

@@ -20,7 +20,7 @@ exports.alinode = {
 	secret: '74072dc3af750f64427b23a5069c29dcc238e121',
 	// logdir: '/root/',
 	// error_log: [ '/root/logs/' ],
-	packages: './../package.json'
+	packages: [ './../package.json' ]
 }
 
 // exports.logger = {
