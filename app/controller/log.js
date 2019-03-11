@@ -8,6 +8,11 @@ class LogController extends Controller {
 		const res = await log.query(this.ctx.request.query)
 		this.ctx.body = res
 	}
+	async count() {
+		const { log } = this.ctx.service
+		const res = await log.count(this.ctx.request.query)
+		this.ctx.body = res
+	}
 
 	async create() {
 		const { log } = this.ctx.service

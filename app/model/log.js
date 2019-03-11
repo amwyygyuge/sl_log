@@ -44,5 +44,26 @@ module.exports = app => {
 			return await this.find(args).where(dateKey).gt(startTime)
 		}
 	}
+
+	LogSchema.statics.countByTimeRange = async function(args, timeRange = [], dateKey) {
+		const isRange = timeRange.indexOf(null)
+		const [ startTime, endTime ] = timeRange
+		// 时间范围
+		if (isRange === -1) {
+			return await this.count(args).where(dateKey).lt(endTime).where(dateKey).gt(startTime)
+		}
+		// 没有输入
+		if (startTime === null && endTime === null) {
+			return await this.count(args)
+		}
+		// 截止时间
+		if (isRange === 0) {
+			return await this.count(args).where(dateKey).lt(endTime)
+		}
+		//  起始时间
+		if (isRange === 1) {
+			return await this.count(args).where(dateKey).gt(startTime)
+		}
+	}
 	return mongoose.model('Log', LogSchema)
 }

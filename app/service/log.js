@@ -16,8 +16,7 @@ class LogService extends Service {
 		const { endTime = null, startTime = null } = args
 		delete args.endTime
 		delete args.startTime
-		const logs = await this.ctx.model.Log.findByTimeRange(args, [ startTime, endTime ], 'date')
-		return logs
+		return await this.ctx.model.Log.findByTimeRange(args, [ startTime, endTime ], 'date')
 	}
 
 	async remove({ ids }) {
@@ -25,6 +24,13 @@ class LogService extends Service {
 		if (res) {
 			return true
 		}
+	}
+
+	async count(args) {
+		const { endTime = null, startTime = null } = args
+		delete args.endTime
+		delete args.startTime
+		return await this.ctx.model.Log.countByTimeRange(args, [ startTime, endTime ], 'date')
 	}
 }
 

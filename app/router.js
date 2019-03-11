@@ -7,6 +7,7 @@ module.exports = app => {
 	const { router, controller } = app
 	const logRouter = router.namespace('/sl_log')
 	logRouter.get('/query', controller.log.query)
+	logRouter.get('/count', controller.log.count)
 	logRouter.post('/create', controller.log.create)
 	logRouter.post('/remove', controller.log.remove)
 	router.get('/package/:name/:version', controller.npm.index)

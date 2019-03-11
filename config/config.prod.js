@@ -14,15 +14,6 @@ exports.cluster = {
 	}
 }
 
-exports.alinode = {
-	enable: true,
-	appid: '78690',
-	secret: '74072dc3af750f64427b23a5069c29dcc238e121',
-	// logdir: '/root/',
-	// error_log: [ '/root/logs/' ],
-	packages: [ './../package.json' ]
-}
-
 // exports.logger = {
 // 	dir: '/root/'
 // }
