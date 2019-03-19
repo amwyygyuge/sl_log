@@ -7,7 +7,7 @@ class LogService extends Service {
 	async create(log = {}) {
 		if (!log.type) return false
 		let dependencies = log.data.context.dependencies
-		dependencies = JSON.stringify(dependencies).replace(fixRex, '-')
+		log.data.context.dependencies = JSON.parse(JSON.stringify(dependencies).replace(fixRex, '-'))
 		const logString = JSON.stringify(log).replace(/\\n/g, '')
 		const res = await this.ctx.model.Log.create(JSON.parse(logString))
 		if (res) {
@@ -21,11 +21,12 @@ class LogService extends Service {
 		const { user, project } = this.ctx.service
 		const _user = await user.checkUser(log)
 		const _project = await project.checkProject(log)
-		if (_user && !isIdInArray(_project._id, _user.projects)) {
+		if (!(_user && _project)) return false
+		if (!isIdInArray(_project._id, _user.projects)) {
 			_user.projects.push(_project._id)
 			await _user.save()
 		}
-		if (_project && !isIdInArray(_user._id, _project.users)) {
+		if (!isIdInArray(_user._id, _project.users)) {
 			_project.users.push(_user._id)
 			await _project.save()
 		}
