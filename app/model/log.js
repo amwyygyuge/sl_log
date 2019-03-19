@@ -3,12 +3,17 @@ module.exports = app => {
 	const mongoose = app.mongoose
 	const Schema = mongoose.Schema
 
-	const LogSchema = new Schema({
-		type: String,
-		env: String,
-		data: Schema.Types.Mixed,
-		date: { type: Date, default: Date.now }
-	})
+	const LogSchema = new Schema(
+		{
+			type: String,
+			env: String,
+			data: Schema.Types.Mixed,
+			date: { type: Date, default: Date.now }
+		},
+		{
+			versionKey: false
+		}
+	)
 	LogSchema.index({
 		'data.script': 1
 	})

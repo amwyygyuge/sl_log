@@ -24,6 +24,5 @@ module.exports = appInfo => {
 		// error_log: [ '/root/logs/' ],
 		packages: [ './../package.json' ]
 	}
-	// add your config here
 	return config
 }
