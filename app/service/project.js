@@ -35,7 +35,7 @@ class ProjectService extends Service {
 	async update({ id, git, project, name }) {
 		const { Project } = this.ctx.model
 		if (!id) return false
-		return await Project.findByIdAndUpdate(id, { name, git, project })
+		return await Project.findByIdAndUpdate(id, this.ctx.helper.filterObject({ name, git, project }))
 	}
 }
 

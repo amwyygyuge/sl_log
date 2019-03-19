@@ -21,11 +21,11 @@ class LogService extends Service {
 		const { user, project } = this.ctx.service
 		const _user = await user.checkUser(log)
 		const _project = await project.checkProject(log)
-		if (!isIdInArray(_project._id, _user.projects)) {
+		if (_user && !isIdInArray(_project._id, _user.projects)) {
 			_user.projects.push(_project._id)
 			await _user.save()
 		}
-		if (!isIdInArray(_user._id, _project.users)) {
+		if (_project && !isIdInArray(_user._id, _project.users)) {
 			_project.users.push(_user._id)
 			await _project.save()
 		}

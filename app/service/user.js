@@ -5,6 +5,7 @@ const Service = require('egg').Service
 class UserService extends Service {
 	async checkUser(log) {
 		const email = log.data.user
+		if (!email) return false
 		const { os, sl, node } = log.data.context
 		const { User } = this.ctx.model
 		const _user = await User.findOne({ email })
@@ -39,7 +40,7 @@ class UserService extends Service {
 	async update({ id, cname, name, email }) {
 		const { User } = this.ctx.model
 		if (!id) return false
-		return await User.findByIdAndUpdate(id, { cname, name, email })
+		return await User.findByIdAndUpdate(id, this.ctx.helper.filterObject({ cname, name, email }))
 	}
 }
 

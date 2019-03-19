@@ -39,5 +39,14 @@ module.exports = {
 			})
 		}
 		return { conditions, options }
+	},
+	filterObject: obj => {
+		const _obj = {}
+		Object.keys(obj).forEach(key => {
+			if (obj[key] !== null && obj[key] !== undefined) {
+				_obj[key] = obj[key]
+			}
+		})
+		return _obj
 	}
 }
