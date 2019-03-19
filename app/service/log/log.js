@@ -9,7 +9,7 @@ class LogService extends Service {
 		let dependencies = log.data.context.dependencies
 		log.data.context.dependencies = JSON.parse(JSON.stringify(dependencies).replace(fixRex, '-'))
 		const logString = JSON.stringify(log).replace(/\\n/g, '')
-		const res = await this.ctx.model.Log.create(JSON.parse(logString))
+		const res = await this.ctx.model.Log.Log.create(JSON.parse(logString))
 		if (res) {
 			await this.correlationUserProject(res)
 			return true
@@ -36,11 +36,11 @@ class LogService extends Service {
 		const { endTime = null, startTime = null } = args
 		delete args.endTime
 		delete args.startTime
-		return await this.ctx.model.Log.findByTimeRange(args, [ startTime, endTime ], 'date')
+		return await this.ctx.model.Log.Log.findByTimeRange(args, [ startTime, endTime ], 'date')
 	}
 
 	async remove({ ids }) {
-		const res = await this.ctx.model.Log.deleteMany({ _id: { $in: ids } })
+		const res = await this.ctx.model.Log.Log.deleteMany({ _id: { $in: ids } })
 		if (res) {
 			return true
 		}
@@ -50,7 +50,7 @@ class LogService extends Service {
 		const { endTime = null, startTime = null } = args
 		delete args.endTime
 		delete args.startTime
-		return await this.ctx.model.Log.countByTimeRange(args, [ startTime, endTime ], 'date')
+		return await this.ctx.model.Log.Log.countByTimeRange(args, [ startTime, endTime ], 'date')
 	}
 }
 

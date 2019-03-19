@@ -4,24 +4,24 @@ const Controller = require('egg').Controller
 
 class LogController extends Controller {
 	async query() {
-		const { log } = this.ctx.service
+		const { log } = this.ctx.service.log
 		const res = await log.query(this.ctx.request.query)
 		this.ctx.body = res
 	}
 	async count() {
-		const { log } = this.ctx.service
+		const { log } = this.ctx.service.log
 		const res = await log.count(this.ctx.request.query)
 		this.ctx.body = res
 	}
 
 	async create() {
-		const { log } = this.ctx.service
+		const { log } = this.ctx.service.log
 		const res = await log.create(this.ctx.request.body)
 		this.ctx.body = res
 	}
 
 	async remove() {
-		const { log } = this.ctx.service
+		const { log } = this.ctx.service.log
 		const res = await log.remove(this.ctx.request.body)
 		if (res) {
 			this.ctx.body = {

@@ -8,5 +8,8 @@ module.exports = () => {
 		if (ctx.body === false) {
 			ctx.body = { message: '请求失败', code: -1 }
 		}
+		if (ctx.body === null) {
+			ctx.body = { message: '请求失败', code: -1 }
+		}
 	}
 }
