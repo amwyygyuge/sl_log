@@ -18,7 +18,7 @@ class LogService extends Service {
 	}
 
 	async correlationUserProject(log) {
-		const { user, project } = this.ctx.service
+		const { user, project } = this.ctx.service.log
 		const _user = await user.checkUser(log)
 		const _project = await project.checkProject(log)
 		if (!(_user && _project)) return false

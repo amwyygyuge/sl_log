@@ -22,7 +22,7 @@ module.exports = appInfo => {
 		secret: '74072dc3af750f64427b23a5069c29dcc238e121',
 		// logdir: '/root/',
 		// error_log: [ '/root/logs/' ],
-		packages: [ './../package.json' ]
+		packages: [ '/sl_log/package.json' ]
 	}
 	return config
 }
