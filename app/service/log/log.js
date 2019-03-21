@@ -6,8 +6,8 @@ const isIdInArray = (id, array = []) => array.includes(id)
 class LogService extends Service {
 	async create(log = {}) {
 		if (!log.type) return false
-		let dependencies = log.data.context.dependencies
-		log.data.context.dependencies = JSON.parse(JSON.stringify(dependencies).replace(fixRex, '-'))
+		let dependencies = log.data.context.project.dependencies
+		log.data.context.project.dependencies = JSON.parse(JSON.stringify(dependencies).replace(fixRex, '-'))
 		const logString = JSON.stringify(log).replace(/\\n/g, '')
 		const res = await this.ctx.model.Log.Log.create(JSON.parse(logString))
 		if (res) {

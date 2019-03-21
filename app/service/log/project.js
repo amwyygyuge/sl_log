@@ -4,20 +4,24 @@ const Service = require('egg').Service
 
 class ProjectService extends Service {
 	async checkProject(log) {
-		const { project, dependencies } = log.data.context
-		if (!project) return false
+		const project = log.data.context.project
+		const git = log.data.context.git
+		if (!project || typeof project === 'string') return false
+		const { name, dependencies } = project
 		const { Project } = this.ctx.model.Log
-		const _project = await Project.findOne({ project })
+		const _project = await Project.findOne({ project: name })
 		if (_project) {
 			_project.logs.push(log._id)
 			_project.dependencies = dependencies
+			_project.git = git
 			return _project.save()
 		} else {
 			return await Project.create({
 				logs: [ log._id ],
 				project,
 				dependencies,
-				users: []
+				users: [],
+				git
 			})
 		}
 	}
