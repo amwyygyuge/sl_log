@@ -18,7 +18,7 @@ class ProjectService extends Service {
 		} else {
 			return await Project.create({
 				logs: [ log._id ],
-				project,
+				project: name,
 				dependencies,
 				users: [],
 				git
