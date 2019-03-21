@@ -7,7 +7,30 @@ module.exports = app => {
 		{
 			type: String,
 			env: String,
-			data: Schema.Types.Mixed,
+			data: {
+				user: String,
+				script: String,
+				args: Object,
+				context: {
+					os: Object,
+					node: String,
+					sl: {
+						version: String,
+						builder: {
+							name: String,
+							version: String
+						}
+					},
+					git: {
+						origin: String,
+						branch: String
+					},
+					project: {
+						name: String,
+						dependencies: Object
+					}
+				}
+			},
 			date: { type: Date, default: Date.now }
 		},
 		{

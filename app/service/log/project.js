@@ -36,10 +36,10 @@ class ProjectService extends Service {
 		if (withUsers) _project = _project.populate('users')
 		return await _project
 	}
-	async update({ id, git, project, name }) {
+	async update({ id, project, name }) {
 		const { Project } = this.ctx.model.Log
 		if (!id) return false
-		return await Project.findByIdAndUpdate(id, this.ctx.helper.filterObject({ name, git, project }))
+		return await Project.findByIdAndUpdate(id, this.ctx.helper.filterObject({ name, project }))
 	}
 }
 
