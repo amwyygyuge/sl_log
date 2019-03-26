@@ -29,7 +29,14 @@ module.exports = app => {
 						name: String,
 						dependencies: Object
 					}
-				}
+				},
+				buildInfo: {
+					startTime: Number,
+					endTime: Number,
+					buildTime: Number,
+					assets: Object
+				},
+				error: String
 			},
 			date: { type: Date, default: Date.now }
 		},
