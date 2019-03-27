@@ -34,7 +34,8 @@
 		"cov": "egg-bin cov",
 		"lint": "eslint .",
 		"ci": "npm run lint && npm run cov",
-		"autod": "autod"
+		"autod": "autod",
+		"restart": "egg-scripts stop --title=sl_log && EGG_SERVER_ENV=prod egg-scripts start --daemon --title=sl_log"
 	},
 	"ci": {
 		"version": "8"

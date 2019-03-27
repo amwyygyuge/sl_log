@@ -53,9 +53,9 @@ module.exports = app => {
 	LogSchema.index({
 		'data.context.node': 1
 	})
-	LogSchema.index({
-		'data.context.project.name': 1
-	})
+	// LogSchema.index({
+	// 	'data.context.project.name': 1
+	// })
 	LogSchema.index({
 		'data.context.sl.version': 1
 	})
