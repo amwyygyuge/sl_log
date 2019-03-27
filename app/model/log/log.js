@@ -36,8 +36,7 @@ module.exports = app => {
 					buildTime: Number,
 					assets: Object
 				},
-				error: String,
-				args: Object
+				error: String
 			},
 			date: { type: Date, default: Date.now }
 		},
