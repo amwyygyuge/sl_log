@@ -36,7 +36,8 @@ module.exports = app => {
 					buildTime: Number,
 					assets: Object
 				},
-				error: String
+				error: String,
+				args: Object
 			},
 			date: { type: Date, default: Date.now }
 		},
@@ -54,7 +55,7 @@ module.exports = app => {
 		'data.context.node': 1
 	})
 	LogSchema.index({
-		'data.context.project': 1
+		'data.context.project.name': 1
 	})
 	LogSchema.index({
 		'data.context.sl.version': 1
